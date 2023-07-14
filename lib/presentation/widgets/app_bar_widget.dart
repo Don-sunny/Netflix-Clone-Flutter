@@ -14,7 +14,7 @@ class AppBarWidget extends StatelessWidget {
           title,
           style: const TextStyle(
             fontSize: 30,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w900,
           ),
         ),
         const Spacer(),
@@ -24,7 +24,7 @@ class AppBarWidget extends StatelessWidget {
         ),
         kWidth,
         Container(
-          color: kButtonColorWhite,
+          color: Colors.blue,
           height: 30,
           width: 30,
         )
