@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:netflix_project/core/constants.dart';
 import 'package:netflix_project/presentation/search/widgets/search_result.dart';
 
-const imageUrl =
-    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4FAA18ZIja70d1Tu5hr5cj2q1sB.jpg';
-
 class ScreenSearch extends StatelessWidget {
   const ScreenSearch({super.key});
 

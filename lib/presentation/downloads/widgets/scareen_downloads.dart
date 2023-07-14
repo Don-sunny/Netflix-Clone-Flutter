@@ -87,13 +87,13 @@ class Section2 extends StatelessWidget {
                 image: imageList[2],
                 margin: const EdgeInsets.only(left: 130, bottom: 40),
                 angle: 20,
-                size: Size(size.width * 0.40, size.height * 0.21),
+                size: Size(size.width * 0.38, size.height * 0.21),
               ),
               DownloadImageWidget(
                 image: imageList[0],
                 margin: const EdgeInsets.only(right: 130, bottom: 40),
                 angle: -20,
-                size: Size(size.width * 0.40, size.height * 0.21),
+                size: Size(size.width * 0.38, size.height * 0.21),
               ),
               DownloadImageWidget(
                 image: imageList[1],
