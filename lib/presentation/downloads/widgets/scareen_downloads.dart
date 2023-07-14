@@ -23,13 +23,11 @@ class ScreenDownloads extends StatelessWidget {
           child: AppBarWidget(
             title: 'Downloads',
           )),
-      body: Padding(
-          padding: const EdgeInsets.all(12),
-          child: ListView.separated(
-              padding: const EdgeInsets.all(10),
-              itemBuilder: (ctx, index) => _widgetList[index],
-              separatorBuilder: (ctx, index) => const SizedBox(height: 20),
-              itemCount: _widgetList.length)),
+      body: ListView.separated(
+          padding: const EdgeInsets.all(10),
+          itemBuilder: (ctx, index) => _widgetList[index],
+          separatorBuilder: (ctx, index) => const SizedBox(height: 20),
+          itemCount: _widgetList.length),
     );
   }
 }
@@ -63,14 +61,14 @@ class Section2 extends StatelessWidget {
           'Indroducing Downloads for you',
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: kColor,
-            fontSize: 24,
+            color: kWhite,
+            fontSize: 23,
             fontWeight: FontWeight.bold,
           ),
         ),
         kHight,
         const Text(
-          "We Will download a personlized selection of\nmovies and shows for you, so ther's\nalways something to watch on your \ndeveice",
+          "We Will download a personlized selection of movies and shows for you, so ther's\nalways something to watch on your \ndeveice",
           textAlign: TextAlign.center,
           style: TextStyle(
               color: Colors.grey, fontSize: 16, fontWeight: FontWeight.bold),
@@ -162,7 +160,7 @@ class _SmartDownload extends StatelessWidget {
       children: [
         Icon(
           Icons.settings,
-          color: kColor,
+          color: kWhite,
         ),
         Text('Smart downloads'),
       ],
