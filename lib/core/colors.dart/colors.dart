@@ -9,3 +9,5 @@ const kBlack = Colors.black;
 final kBttonColorBlue = Colors.blueAccent[700];
 
 const kButtonColorWhite = Colors.white;
+
+const kGerayColor = Colors.grey;

@@ -10,6 +10,7 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        kWidth,
         Text(
           title,
           style: const TextStyle(
@@ -30,7 +31,8 @@ class AppBarWidget extends StatelessWidget {
               image: const DecorationImage(
                   image: NetworkImage(avatarImage), fit: BoxFit.cover),
               borderRadius: BorderRadius.circular(5)),
-        )
+        ),
+        kWidth
       ],
     );
   }

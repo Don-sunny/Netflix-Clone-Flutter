@@ -1,6 +1,5 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix_project/core/constants.dart';
 
 const String imageUrl =

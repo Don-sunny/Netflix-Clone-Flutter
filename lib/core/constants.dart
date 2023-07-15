@@ -2,13 +2,21 @@ import 'package:flutter/material.dart';
 
 const kWidth = SizedBox(width: 20);
 
+const kwidth6 = SizedBox(width: 6);
+
 const kHight = SizedBox(height: 4);
 
 const kHight10 = SizedBox(height: 10);
 
+const kHight30 = SizedBox(height: 30);
+
+const kHight20 = SizedBox(height: 20);
+
 //Border radius
 
-BorderRadius kRadius20 = BorderRadius.circular(20);
+final kRadius20 = BorderRadius.circular(20);
+
+final kRadius30 = BorderRadius.circular(30);
 
 //Images
 
@@ -18,7 +26,16 @@ const mianImage =
 const avatarImage =
     'https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg';
 
+const newAndHotTemImage =
+    'https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/2X5nnvkWvYRFmTspXY7lsJqDzog.jpg';
+
+const netflixLogo =
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9RAq1pMgiuEqnwR3uXPsnno3nitbJt9vdkw&usqp=CAU';
+
 // Text style
 
 const TextStyle kHomeTitleText =
     TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+
+const TextStyle kNewAndHot =
+    TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
