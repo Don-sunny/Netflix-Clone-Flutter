@@ -44,8 +44,9 @@ class BottomNavigationWidget extends StatelessWidget {
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.circleArrowDown,
-                  fill: BorderSide.strokeAlignCenter),
+              icon: Icon(
+                FontAwesomeIcons.circleArrowDown,
+              ),
               label: 'Downloads',
             ),
           ],

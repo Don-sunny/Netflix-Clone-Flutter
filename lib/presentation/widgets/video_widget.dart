@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
-import 'package:netflix_project/core/constants.dart';
 
 class VideoWidget extends StatelessWidget {
   const VideoWidget({super.key, required this.image});
