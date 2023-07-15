@@ -80,7 +80,7 @@ class Section2 extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               CircleAvatar(
-                radius: size.width * 0.37,
+                radius: size.width * 0.35,
                 backgroundColor: Colors.grey.withOpacity(0.3),
               ),
               DownloadImageWidget(
@@ -150,9 +150,7 @@ class Section3 extends StatelessWidget {
 }
 
 class _SmartDownload extends StatelessWidget {
-  const _SmartDownload({
-    super.key,
-  });
+  const _SmartDownload();
 
   @override
   Widget build(BuildContext context) {
