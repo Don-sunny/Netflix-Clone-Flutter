@@ -26,8 +26,11 @@ const mianImage =
 const avatarImage =
     'https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-88wkdmjrorckekha.jpg';
 
-const newAndHotTemImage =
-    'https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/2X5nnvkWvYRFmTspXY7lsJqDzog.jpg';
+const newAndHotImage1 =
+    'https://ntvb.tmsimg.com/assets/p21399168_v_h8_aa.jpg?w=1280&h=720';
+
+const newAndHotImage2 =
+    'https://images-cdn.ubuy.co.in/6351347fdfec8169b11cbb57-peaky-blinders-poster-season-1-key-art.jpg';
 
 const netflixLogo =
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9RAq1pMgiuEqnwR3uXPsnno3nitbJt9vdkw&usqp=CAU';

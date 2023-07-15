@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
 import 'package:netflix_project/core/constants.dart';
 import 'package:netflix_project/presentation/new_and_hot/widgets/comming_soon_widget.dart';
+import 'package:netflix_project/presentation/new_and_hot/widgets/everyones_watching_widget.dart';
 import 'package:netflix_project/presentation/widgets/custom_button_widget.dart';
+import 'package:netflix_project/presentation/widgets/video_widget.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({super.key});
@@ -83,6 +86,9 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   _buildEveryonesWatching() {
-    return ListView();
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => const EveryonesWatchingWidget(),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
 
 const imageUrl =
@@ -29,8 +30,9 @@ class VideoListItem extends StatelessWidget {
                   child: IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.volume_off,
-                      color: kWhite,
+                      FontAwesomeIcons.volumeXmark,
+                      color: Colors.white70,
+                      size: 30,
                     ),
                     iconSize: 30,
                   ),

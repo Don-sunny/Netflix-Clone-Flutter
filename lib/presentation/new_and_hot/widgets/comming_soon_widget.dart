@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
 import 'package:netflix_project/core/constants.dart';
-import 'package:netflix_project/presentation/new_and_hot/screen_new_and_%20hot.dart';
 import 'package:netflix_project/presentation/widgets/custom_button_widget.dart';
+import 'package:netflix_project/presentation/widgets/video_widget.dart';
 
 class CommingSoonWidget extends StatelessWidget {
   const CommingSoonWidget({
@@ -42,34 +43,7 @@ class CommingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 180,
-                    child: Image.network(
-                      newAndHotTemImage,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: CircleAvatar(
-                      radius: 17,
-                      backgroundColor: Colors.black.withOpacity(0.3),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.volume_off,
-                          color: kWhite,
-                        ),
-                        iconSize: 15,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              const VideoWidget(image: newAndHotImage1),
               kHight,
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,7 +58,7 @@ class CommingSoonWidget extends StatelessWidget {
                   Row(
                     children: [
                       CoustomButtonWidget(
-                        icon: Icons.notifications,
+                        icon: FontAwesomeIcons.bell,
                         title: 'Remind me',
                         textSize: 10,
                         iconSize: 15,
@@ -92,12 +66,13 @@ class CommingSoonWidget extends StatelessWidget {
                       ),
                       kWidth,
                       CoustomButtonWidget(
-                        icon: Icons.info,
-                        title: 'Remind me',
+                        icon: Icons.info_outline,
+                        title: 'Info',
                         textSize: 10,
                         iconSize: 15,
                         fontWeight: FontWeight.normal,
-                      )
+                      ),
+                      kWidth,
                     ],
                   ),
                 ],

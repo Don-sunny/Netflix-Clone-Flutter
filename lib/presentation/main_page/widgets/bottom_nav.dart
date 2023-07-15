@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 ValueNotifier<int> indexChangeNotifier = ValueNotifier(0);
 
@@ -43,7 +44,8 @@ class BottomNavigationWidget extends StatelessWidget {
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.download),
+              icon: Icon(FontAwesomeIcons.circleArrowDown,
+                  fill: BorderSide.strokeAlignCenter),
               label: 'Downloads',
             ),
           ],

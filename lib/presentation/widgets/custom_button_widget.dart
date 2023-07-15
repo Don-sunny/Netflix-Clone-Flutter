@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CoustomButtonWidget extends StatelessWidget {
   const CoustomButtonWidget({
@@ -8,6 +9,7 @@ class CoustomButtonWidget extends StatelessWidget {
     this.iconSize = 30,
     this.textSize = 18,
     this.fontWeight = FontWeight.bold,
+    this.textColor = Colors.white,
   });
 
   final IconData icon;
@@ -15,12 +17,13 @@ class CoustomButtonWidget extends StatelessWidget {
   final double iconSize;
   final double textSize;
   final FontWeight fontWeight;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(
+        FaIcon(
           icon,
           size: iconSize,
         ),
@@ -29,6 +32,7 @@ class CoustomButtonWidget extends StatelessWidget {
           style: TextStyle(
             fontSize: textSize,
             fontWeight: FontWeight.bold,
+            color: textColor,
           ),
         )
       ],
