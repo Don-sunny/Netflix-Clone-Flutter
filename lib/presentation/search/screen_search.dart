@@ -1,10 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix_project/application/movie_data/movie_data.dart';
 import 'package:netflix_project/core/constants.dart';
-import 'package:netflix_project/presentation/search/widgets/search_result.dart';
+import 'package:netflix_project/main.dart';
+import 'package:netflix_project/presentation/search/widgets/search_idel.dart';
 
-class ScreenSearch extends StatelessWidget {
+class ScreenSearch extends StatefulWidget {
   const ScreenSearch({super.key});
+
+  @override
+  State<ScreenSearch> createState() => _ScreenSearchState();
+}
+
+class _ScreenSearchState extends State<ScreenSearch> {
+  List<MovieData> movielist = [];
+  TextEditingController searchcontroller = TextEditingController();
+
+  @override
+  void initState() {
+    movielist = trendingmovies;
+    super.initState();
+  }
+
+  void search(String moviname) {
+    List<MovieData> result = [];
+    if (moviname.isEmpty) {
+      result = trendingmovies;
+    } else {
+      result = trendingmovies
+          .where((element) =>
+              element.title!.toLowerCase().contains(moviname.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      movielist = result;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +47,8 @@ class ScreenSearch extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CupertinoSearchTextField(
+            controller: searchcontroller,
+            onChanged: (value) => search(value),
             backgroundColor: Colors.grey.withOpacity(0.4),
             prefixIcon: const Icon(
               CupertinoIcons.search,
@@ -30,10 +63,11 @@ class ScreenSearch extends StatelessWidget {
             ),
           ),
           kHight,
-          const Expanded(
-            // child: SearchIdelWidget(),
-            child: SearchResultsWidget(),
-          ),
+          Expanded(
+              child: //searchcontroller.text.isEmpty
+                  SearchIdelWidget(movilist: movielist)
+              // SearchResultsWidget(movielist: trendingmovies),
+              ),
         ],
       ),
     )));

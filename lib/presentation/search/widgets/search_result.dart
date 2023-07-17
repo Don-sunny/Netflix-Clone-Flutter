@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_project/application/movie_data/movie_data.dart';
+import 'package:netflix_project/main.dart';
 
 import 'package:netflix_project/presentation/search/widgets/title.dart';
 
@@ -6,7 +8,9 @@ const imageUrl =
     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/dalsmJZErwS1oqDJoSi85sxdxMX.jpg';
 
 class SearchResultsWidget extends StatelessWidget {
-  const SearchResultsWidget({super.key});
+  const SearchResultsWidget({super.key, required this.movielist});
+
+  final List<MovieData> movielist;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,9 @@ class SearchResultsWidget extends StatelessWidget {
             mainAxisSpacing: 8,
             childAspectRatio: 1 / 1.4,
             children: List.generate(20, (index) {
-              return const MainCard();
+              return MainCard(
+                posterurl: trendingmovies[index].posterPath!,
+              );
             }),
           ),
         )
@@ -32,14 +38,14 @@ class SearchResultsWidget extends StatelessWidget {
 }
 
 class MainCard extends StatelessWidget {
-  const MainCard({super.key});
-
+  const MainCard({super.key, required this.posterurl});
+  final String posterurl;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          image: const DecorationImage(
-              image: NetworkImage(imageUrl), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: NetworkImage(posterurl), fit: BoxFit.cover),
           borderRadius: BorderRadius.circular(10)),
     );
   }

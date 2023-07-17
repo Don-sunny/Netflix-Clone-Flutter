@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:netflix_project/core/constants.dart';
+import 'package:netflix_project/main.dart';
 import 'package:netflix_project/presentation/home/widget/number_card.dart';
 import 'package:netflix_project/presentation/widgets/background_card.dart';
 import 'package:netflix_project/presentation/widgets/main_title.dart';
@@ -34,17 +35,21 @@ class ScreenHome extends StatelessWidget {
               children: [
                 ListView(
                   physics: const AlwaysScrollableScrollPhysics(),
-                  children: const [
-                    BackgoundCardWidget(),
-                    MainTitleCard(title: 'Released in the past year'),
+                  children: [
+                    const BackgoundCardWidget(),
+                    MainTitleCard(
+                        title: 'Released in the past year',
+                        movies: releasedinthepastyear),
                     kHight,
-                    MainTitleCard(title: 'Trending Now'),
+                    MainTitleCard(
+                        title: 'Trending Now', movies: trendingmovies),
                     kHight,
-                    NumberTitleCard(),
+                    const NumberTitleCard(),
                     kHight,
-                    MainTitleCard(title: 'Tense Dramas'),
+                    MainTitleCard(title: 'Tense Dramas', movies: tensedrama),
                     kHight,
-                    MainTitleCard(title: 'South Indian Cinema'),
+                    MainTitleCard(
+                        title: 'South Indian Cinema', movies: southindian),
                   ],
                 ),
                 if (scrollNotifier.value == true)
@@ -124,8 +129,10 @@ class NumberTitleCard extends StatelessWidget {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: List.generate(
-              10,
-              (index) => NumberCard(index: index),
+              topratedmovies.length - 10,
+              (index) => NumberCard(
+                index: index,
+              ),
             ),
           ),
         )

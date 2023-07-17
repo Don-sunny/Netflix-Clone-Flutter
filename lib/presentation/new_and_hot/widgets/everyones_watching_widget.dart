@@ -8,29 +8,34 @@ import 'package:netflix_project/presentation/widgets/video_widget.dart';
 class EveryonesWatchingWidget extends StatelessWidget {
   const EveryonesWatchingWidget({
     super.key,
+    this.name,
+    required this.description,
+    required this.posterurl,
   });
+
+  final String? name, description, posterurl;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Peaky Blinders',
-          style: TextStyle(
+        Text(
+          name ?? 'Unavailable',
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
         kHight20,
-        const Text(
-          'This hit sitcom follow the merry misadventures of six\n20 something pales as they navigate the pitfalls of work,life and love in 1990s Manhattan',
-          style: TextStyle(
+        Text(
+          description ?? 'notavailable',
+          style: const TextStyle(
             color: kGerayColor,
           ),
         ),
         kHight30,
-        const VideoWidget(image: newAndHotImage2),
+        VideoWidget(image: 'https://image.tmdb.org/t/p/w500$posterurl'),
         kHight30,
         const Row(
           mainAxisAlignment: MainAxisAlignment.end,

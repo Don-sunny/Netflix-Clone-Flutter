@@ -1,6 +1,7 @@
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_project/core/constants.dart';
+import 'package:netflix_project/main.dart';
 
 const String imageUrl =
     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/iHk3FOQTXgIdqEtrW4EqIQ2D0pL.jpg';
@@ -25,9 +26,10 @@ class NumberCard extends StatelessWidget {
               height: 250,
               decoration: BoxDecoration(
                   borderRadius: kRadius20,
-                  image: const DecorationImage(
+                  image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(imageUrl),
+                    image: NetworkImage(
+                        'https://image.tmdb.org/t/p/w500${topratedmovies[index].posterPath}'),
                   )),
             ),
           ],

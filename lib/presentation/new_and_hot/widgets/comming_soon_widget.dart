@@ -6,9 +6,13 @@ import 'package:netflix_project/presentation/widgets/custom_button_widget.dart';
 import 'package:netflix_project/presentation/widgets/video_widget.dart';
 
 class CommingSoonWidget extends StatelessWidget {
-  const CommingSoonWidget({
-    super.key,
-  });
+  const CommingSoonWidget(
+      {super.key,
+      required this.name,
+      required this.description,
+      required this.posterurl});
+
+  final String name, description, posterurl;
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +47,22 @@ class CommingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const VideoWidget(image: newAndHotImage1),
+              VideoWidget(image: 'https://image.tmdb.org/t/p/w500$posterurl'),
               kHight,
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Tall Girl 2',
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Text(
+                      name,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 2,
                     ),
                   ),
-                  Row(
+                  const Row(
                     children: [
                       CoustomButtonWidget(
                         icon: FontAwesomeIcons.bell,
@@ -98,18 +105,20 @@ class CommingSoonWidget extends StatelessWidget {
                   )
                 ],
               ),
-              const Text(
-                'Tall Girl 2',
-                style: TextStyle(
-                  fontSize: 20,
+              Text(
+                name,
+                style: const TextStyle(
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               kHight,
-              const Text(
-                'Landin the lead in the school musical a dream come ture fot jodi until the prusser sends her confidence - and her relationship - into a tailspain.',
-                style: TextStyle(
-                  color: kGerayColor,
+              Flexible(
+                child: Text(
+                  description,
+                  style: const TextStyle(
+                    color: kGerayColor,
+                  ),
                 ),
               ),
               kHight30,

@@ -4,12 +4,11 @@ import 'package:netflix_project/presentation/widgets/main_card.dart';
 import 'package:netflix_project/presentation/widgets/main_title.dart';
 
 class MainTitleCard extends StatelessWidget {
-  const MainTitleCard({
-    super.key,
-    required this.title,
-  });
+  const MainTitleCard({super.key, required this.title, required this.movies});
 
   final String title;
+
+  final List movies;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,8 +28,10 @@ class MainTitleCard extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: List.generate(
-                10,
-                (index) => const MainCardWidget(),
+                movies.length,
+                (index) => MainCardWidget(
+                    imageurl:
+                        'https://image.tmdb.org/t/p/w500${movies[index].posterPath}'),
               ),
             ),
           )

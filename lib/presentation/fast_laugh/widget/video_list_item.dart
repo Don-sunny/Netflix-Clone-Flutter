@@ -1,20 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
+import 'package:netflix_project/main.dart';
 
-const imageUrl =
-    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zrPpUlehQaBf8YX2NrVrKK8IEpf.jpg';
+// const imageUrl =
+//     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zrPpUlehQaBf8YX2NrVrKK8IEpf.jpg';
 
 class VideoListItem extends StatelessWidget {
   const VideoListItem({super.key, required this.index});
 
   final int index;
+
+  // final String posterurl;
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          color: Colors.accents[index % Colors.accents.length],
+          // width: double.infinity,
+          // height: double.infinity,
+          // color: Colors.accents[index % Colors.accents.length],
+          decoration: BoxDecoration(
+              color: Colors.accents[index % Colors.accents.length],
+              image: DecorationImage(
+                  image: NetworkImage(
+                      'https://image.tmdb.org/t/p/w500${trendingmovies[index].posterPath}'),
+                  fit: BoxFit.cover)),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -37,20 +48,22 @@ class VideoListItem extends StatelessWidget {
                     iconSize: 30,
                   ),
                 ),
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(imageUrl),
+                        backgroundImage: NetworkImage(
+                            'https://image.tmdb.org/t/p/w500${trendingmovies[index].backdropPath}'),
                         radius: 30,
                       ),
                     ),
-                    VideoActions(icon: Icons.emoji_emotions, title: 'LOL'),
-                    VideoActions(icon: Icons.add, title: 'My List'),
-                    VideoActions(icon: Icons.share, title: 'Share'),
-                    VideoActions(icon: Icons.play_arrow, title: 'Play'),
+                    const VideoActions(
+                        icon: Icons.emoji_emotions, title: 'LOL'),
+                    const VideoActions(icon: Icons.add, title: 'My List'),
+                    const VideoActions(icon: Icons.share, title: 'Share'),
+                    const VideoActions(icon: Icons.play_arrow, title: 'Play'),
                   ],
                 )
               ],

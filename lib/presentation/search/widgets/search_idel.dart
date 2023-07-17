@@ -1,28 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix_project/application/movie_data/movie_data.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
 import 'package:netflix_project/core/constants.dart';
+
 import 'package:netflix_project/presentation/search/widgets/title.dart';
 
 const imageUrl =
     'https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/foGkPxpw9h8zln81j63mix5B7m8.jpg';
 
 class SearchIdelWidget extends StatelessWidget {
-  const SearchIdelWidget({super.key});
+  const SearchIdelWidget({super.key, required this.movilist});
+
+  final List<MovieData> movilist;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SearchWidgetTitle(title: 'Top Search~'),
-        kHight,
+        const SearchWidgetTitle(title: 'Top Search'),
+        kHight10,
         Expanded(
           child: ListView.separated(
             shrinkWrap: true,
-            itemBuilder: (ctx, index) => const TopSearchItemTaile(),
+            itemCount: movilist.length,
+            itemBuilder: (ctx, index) => TopSearchItemTaile(
+                moviename: movilist[index].title!,
+                posterurl:
+                    'https://image.tmdb.org/t/p/w500${movilist[index].backdropPath}'),
             separatorBuilder: (ctx, index) => kHight,
-            itemCount: 10,
           ),
         ),
       ],
@@ -31,7 +38,12 @@ class SearchIdelWidget extends StatelessWidget {
 }
 
 class TopSearchItemTaile extends StatelessWidget {
-  const TopSearchItemTaile({super.key});
+  const TopSearchItemTaile(
+      {super.key, required this.moviename, required this.posterurl});
+
+  final String moviename;
+
+  final String posterurl;
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +53,18 @@ class TopSearchItemTaile extends StatelessWidget {
         Container(
           width: screenWidth * 0.36,
           height: 80,
-          decoration: const BoxDecoration(
+          margin: const EdgeInsets.only(bottom: 7),
+          decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(imageUrl), fit: BoxFit.cover),
+                image: NetworkImage(posterurl), fit: BoxFit.cover),
           ),
         ),
         kWidth,
-        const Expanded(
+        Expanded(
           child: Text(
-            'Movie Name',
-            style: TextStyle(
-                color: kWhite, fontWeight: FontWeight.bold, fontSize: 16),
+            moviename,
+            style: const TextStyle(
+                color: kWhite, fontWeight: FontWeight.bold, fontSize: 12),
           ),
         ),
         const CircleAvatar(

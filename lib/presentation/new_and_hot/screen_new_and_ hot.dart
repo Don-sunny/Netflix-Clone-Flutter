@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_project/application/movie_data/api_functions.dart';
+import 'package:netflix_project/application/upcomming_movies/api%20functions.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
 import 'package:netflix_project/core/constants.dart';
+import 'package:netflix_project/main.dart';
 import 'package:netflix_project/presentation/new_and_hot/widgets/comming_soon_widget.dart';
 import 'package:netflix_project/presentation/new_and_hot/widgets/everyones_watching_widget.dart';
 
@@ -76,16 +79,52 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   _buildCommingSonn() {
-    return ListView.builder(
-      itemBuilder: (context, index) => const CommingSoonWidget(),
-      itemCount: 10,
-    );
+    return FutureBuilder(
+        future: getUpcommingMovies(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator(); // Show a loading indicator while data is being fetched
+          } else if (snapshot.hasError) {
+            return Text(
+                'Error: ${snapshot.error}'); // Show an error message if an error occurs
+          } else if (snapshot.hasData) {
+            final movies = snapshot.data!;
+            return ListView.builder(
+              itemCount: trendingmovies.length,
+              itemBuilder: (context, index) => CommingSoonWidget(
+                  name: movies[index].title!,
+                  description: movies[index].overview!,
+                  posterurl: movies[index].backdropPath!),
+            );
+          } else {
+            return const Text(
+                'No data available'); // Show a message if no data is available
+          }
+        });
   }
 
   _buildEveryonesWatching() {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) => const EveryonesWatchingWidget(),
-    );
+    return FutureBuilder(
+        future: getMovie(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator(); // Show a loading indicator while data is being fetched
+          } else if (snapshot.hasError) {
+            return Text(
+                'Error: ${snapshot.error}'); // Show an error message if an error occurs
+          } else if (snapshot.hasData) {
+            final movies = snapshot.data!;
+            return ListView.builder(
+              itemCount: trendingmovies.length,
+              itemBuilder: (context, index) => EveryonesWatchingWidget(
+                  name: movies[index].title,
+                  description: movies[index].overview,
+                  posterurl: movies[index].backdropPath),
+            );
+          } else {
+            return const Text(
+                'No data available'); // Show a message if no data is available
+          }
+        });
   }
 }

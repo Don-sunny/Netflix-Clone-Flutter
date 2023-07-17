@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_project/application/movie_data/api_functions.dart';
+import 'package:netflix_project/application/movie_data/movie_data.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
-import 'package:netflix_project/presentation/fast_laugh/widget/video_list_item.dart';
 import 'package:netflix_project/presentation/widgets/custom_button_widget.dart';
 
 class BackgoundCardWidget extends StatelessWidget {
@@ -8,34 +9,59 @@ class BackgoundCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 600,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: NetworkImage(imageUrl), fit: BoxFit.cover),
-          ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: 0,
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 15),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return FutureBuilder<List<MovieData>>(
+        future: getMovie(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SizedBox(
+                height: 600,
+                width: double.infinity,
+                child: CircularProgressIndicator(
+                  strokeAlign: BorderSide.strokeAlignCenter,
+                )); // Show a loading indicator while data is being fetched
+          } else if (snapshot.hasError) {
+            return Text(
+                'Error: ${snapshot.error}'); // Show an error message if an error occurs
+          } else if (snapshot.hasData) {
+            final movies = snapshot.data!;
+            return Stack(
               children: [
-                const CoustomButtonWidget(icon: Icons.add, title: 'My List'),
-                _playButton(),
-                const CoustomButtonWidget(icon: Icons.info, title: 'Info')
+                Container(
+                  width: double.infinity,
+                  height: 600,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          'https://image.tmdb.org/t/p/w500${movies[4].posterPath}',
+                        ),
+                        fit: BoxFit.cover),
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const CoustomButtonWidget(
+                            icon: Icons.add, title: 'My List'),
+                        _playButton(),
+                        const CoustomButtonWidget(
+                            icon: Icons.info, title: 'Info')
+                      ],
+                    ),
+                  ),
+                )
               ],
-            ),
-          ),
-        )
-      ],
-    );
+            );
+          } else {
+            return Text(
+                'No data available'); // Show a message if no data is available
+          }
+        });
   }
 
   TextButton _playButton() {
