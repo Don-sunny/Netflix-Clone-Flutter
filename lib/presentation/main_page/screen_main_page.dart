@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_project/presentation/downloads/widgets/scareen_downloads.dart';
+import 'package:netflix_project/presentation/downloads/scareen_downloads.dart';
 import 'package:netflix_project/presentation/fast_laugh/screen_fast_laugh.dart';
 import 'package:netflix_project/presentation/home/screen_home.dart';
 import 'package:netflix_project/presentation/main_page/widgets/bottom_nav.dart';

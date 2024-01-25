@@ -16,8 +16,10 @@ class BackgoundCardWidget extends StatelessWidget {
             return const SizedBox(
                 height: 600,
                 width: double.infinity,
-                child: CircularProgressIndicator(
-                  strokeAlign: BorderSide.strokeAlignCenter,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                  ),
                 )); // Show a loading indicator while data is being fetched
           } else if (snapshot.hasError) {
             return Text(

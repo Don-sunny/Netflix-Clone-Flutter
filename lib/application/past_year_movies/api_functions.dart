@@ -12,9 +12,7 @@ Future<List<PastYearMovies>> getPastYearMovies() async {
     final bodyJson = jsonDecode(response.body);
     data = PastYear.fromJson(bodyJson);
     return data.results;
-  } else {
-    print('Error: ${response.statusCode}');
-  }
+  } else {}
   return data.results;
 }
 

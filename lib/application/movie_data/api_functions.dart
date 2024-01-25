@@ -13,9 +13,7 @@ Future<List<MovieData>> getMovie() async {
     final bodyJson = jsonDecode(response.body);
     data = Movie.fromJson(bodyJson);
     return data.results;
-  } else {
-    print('Error: ${response.statusCode}');
-  }
+  } else {}
   return data.results;
 }
 
