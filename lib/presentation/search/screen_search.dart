@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_project/application/bloc/search_bloc.dart';
 import 'package:netflix_project/application/movie_data/movie_data.dart';
 import 'package:netflix_project/core/constants.dart';
 import 'package:netflix_project/main.dart';
 import 'package:netflix_project/presentation/search/widgets/search_idel.dart';
+import 'package:netflix_project/presentation/search/widgets/search_result.dart';
 
 class ScreenSearch extends StatefulWidget {
   const ScreenSearch({super.key});
@@ -39,6 +42,9 @@ class _ScreenSearchState extends State<ScreenSearch> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      BlocProvider.of<SearchBloc>(context).add(const Initialize());
+    });
     return Scaffold(
         body: SafeArea(
             child: Padding(
@@ -48,7 +54,10 @@ class _ScreenSearchState extends State<ScreenSearch> {
         children: [
           CupertinoSearchTextField(
             controller: searchcontroller,
-            onChanged: (value) => search(value),
+            onChanged: (value) {
+              BlocProvider.of<SearchBloc>(context)
+                  .add(SearchMovie(movieQuery: value));
+            },
             backgroundColor: Colors.grey.withOpacity(0.4),
             prefixIcon: const Icon(
               CupertinoIcons.search,
@@ -63,9 +72,22 @@ class _ScreenSearchState extends State<ScreenSearch> {
             ),
           ),
           kHight,
-          Expanded(
-              child: //searchcontroller.text.isEmpty
-                  SearchIdelWidget(movilist: movielist)
+          Expanded(child: //searchcontroller.text.isEmpty
+                  BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state.isError) {
+                return const Center(
+                  child: Text('An error occuered'),
+                );
+              }
+              if (state.searchResultList.isEmpty ||
+                  searchcontroller.text.isEmpty) {
+                return const SearchIdelWidget();
+              } else {
+                return const SearchResultsWidget();
+              }
+            },
+          )
               // SearchResultsWidget(movielist: trendingmovies),
               ),
         ],

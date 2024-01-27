@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:netflix_project/application/bloc/search_bloc.dart';
 import 'package:netflix_project/application/movie_data/movie_data.dart';
 import 'package:netflix_project/main.dart';
 
@@ -8,9 +10,9 @@ const imageUrl =
     'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/dalsmJZErwS1oqDJoSi85sxdxMX.jpg';
 
 class SearchResultsWidget extends StatelessWidget {
-  const SearchResultsWidget({super.key, required this.movielist});
-
-  final List<MovieData> movielist;
+  const SearchResultsWidget({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +21,23 @@ class SearchResultsWidget extends StatelessWidget {
       children: [
         const SearchWidgetTitle(title: 'Movies & TV'),
         Expanded(
-          child: GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            childAspectRatio: 1 / 1.4,
-            children: List.generate(20, (index) {
-              return MainCard(
-                posterurl: trendingmovies[index].posterPath!,
+          child: BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              return GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 3,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: 1 / 1.4,
+                children: List.generate(state.searchResultList.length, (index) {
+                  final movie = state.searchResultList[index];
+                  return MainCard(
+                    posterurl:
+                        'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                  );
+                }),
               );
-            }),
+            },
           ),
         )
       ],

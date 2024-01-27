@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:netflix_project/application/bloc/downloads_bloc.dart';
+import 'package:netflix_project/application/downloads/downloads_bloc.dart';
 import 'package:netflix_project/core/colors.dart/colors.dart';
 import 'package:netflix_project/core/constants.dart';
 import 'package:netflix_project/presentation/downloads/widgets/download_image_widget.dart';
@@ -47,6 +47,7 @@ class Section2 extends StatelessWidget {
           builder: (context, state) {
             return SizedBox(
               width: size.width,
+              height: size.height * 0.35,
               child: state.isLoading || state.downloads!.isEmpty
                   ? const Center(child: CircularProgressIndicator())
                   : Stack(
@@ -58,21 +59,21 @@ class Section2 extends StatelessWidget {
                         ),
                         DownloadImageWidget(
                           image:
-                              '$imageAppendUrl${state.downloads![0].posterPath}',
+                              '$imageAppendUrl${state.downloads[0].posterPath}',
                           margin: const EdgeInsets.only(left: 130, bottom: 40),
                           angle: 20,
                           size: Size(size.width * 0.38, size.height * 0.21),
                         ),
                         DownloadImageWidget(
                           image:
-                              '$imageAppendUrl${state.downloads![1].posterPath}',
+                              '$imageAppendUrl${state.downloads[1].posterPath}',
                           margin: const EdgeInsets.only(right: 130, bottom: 40),
                           angle: -20,
                           size: Size(size.width * 0.38, size.height * 0.21),
                         ),
                         DownloadImageWidget(
                           image:
-                              '$imageAppendUrl${state.downloads![2].posterPath}',
+                              '$imageAppendUrl${state.downloads[2].posterPath}',
                           margin: const EdgeInsets.only(bottom: 7),
                           size: Size(size.width * 0.40, size.height * 0.24),
                           radius: 7,
