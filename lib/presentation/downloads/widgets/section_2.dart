@@ -48,7 +48,7 @@ class Section2 extends StatelessWidget {
             return SizedBox(
               width: size.width,
               height: size.height * 0.35,
-              child: state.isLoading || state.downloads!.isEmpty
+              child: state.isLoading || state.downloads.isEmpty
                   ? const Center(child: CircularProgressIndicator())
                   : Stack(
                       alignment: Alignment.center,

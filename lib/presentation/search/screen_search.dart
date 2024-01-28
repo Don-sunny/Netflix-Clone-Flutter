@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix_project/application/bloc/search_bloc.dart';
 import 'package:netflix_project/application/movie_data/movie_data.dart';
 import 'package:netflix_project/core/constants.dart';
+import 'package:netflix_project/domain/core/debounce/debounce.dart';
 import 'package:netflix_project/main.dart';
 import 'package:netflix_project/presentation/search/widgets/search_idel.dart';
 import 'package:netflix_project/presentation/search/widgets/search_result.dart';
@@ -25,20 +26,22 @@ class _ScreenSearchState extends State<ScreenSearch> {
     super.initState();
   }
 
-  void search(String moviname) {
-    List<MovieData> result = [];
-    if (moviname.isEmpty) {
-      result = trendingmovies;
-    } else {
-      result = trendingmovies
-          .where((element) =>
-              element.title!.toLowerCase().contains(moviname.toLowerCase()))
-          .toList();
-    }
-    setState(() {
-      movielist = result;
-    });
-  }
+  // void search(String moviname) {
+  //   List<MovieData> result = [];
+  //   if (moviname.isEmpty) {
+  //     result = trendingmovies;
+  //   } else {
+  //     result = trendingmovies
+  //         .where((element) =>
+  //             element.title!.toLowerCase().contains(moviname.toLowerCase()))
+  //         .toList();
+  //   }
+  //   setState(() {
+  //     movielist = result;
+  //   });
+  // }
+
+  final _debouncer = Debouncer(milliseconds: 1 * 1000);
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +58,10 @@ class _ScreenSearchState extends State<ScreenSearch> {
           CupertinoSearchTextField(
             controller: searchcontroller,
             onChanged: (value) {
-              BlocProvider.of<SearchBloc>(context)
-                  .add(SearchMovie(movieQuery: value));
+              _debouncer.run(() {
+                BlocProvider.of<SearchBloc>(context)
+                    .add(SearchMovie(movieQuery: value));
+              });
             },
             backgroundColor: Colors.grey.withOpacity(0.4),
             prefixIcon: const Icon(
